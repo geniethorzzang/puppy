@@ -4,6 +4,22 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import platform
 
+import matplotlib.font_manager as fm
+import matplotlib.pyplot as plt
+import os
+
+# 폰트 파일 경로 지정 (파일이 파이썬 파일과 같은 폴더에 있어야 함)
+font_path = os.path.join(os.getcwd(), 'malgun.ttf')
+
+# 폰트가 있는지 확인 후 적용
+if os.path.exists(font_path):
+    font_prop = fm.FontProperties(fname=font_path)
+    plt.rcParams['font.family'] = font_prop.get_name()
+    plt.rc('font', family=font_prop.get_name())
+else:
+    st.warning("폰트 파일을 찾을 수 없어 기본 폰트를 사용합니다.")
+
+plt.rcParams['axes.unicode_minus'] = False
 # --- 한글 폰트 설정 ---
 if platform.system() == 'Windows':
     plt.rcParams['font.family'] = 'Malgun Gothic'
